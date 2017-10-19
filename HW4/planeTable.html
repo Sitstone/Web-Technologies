@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<style>
+	table{
+		text-align: center;
+		position: relative;
+		margin-top: 200px;
+	}
+	button{
+		border-radius: 4px; 
+		background-color: "Grey";
+	}
+</style>
+<body>
+	<table align="center">
+		<tr><th>Enter URL for Airlines List JSON File</th></tr>
+		<tr><td><input type="text" id="JSONFile"></td></tr>
+		<tr>
+			<td><button onclick="loadXML()">Submit Query</button></td></tr>
+	</table>
+
+	<!-- download json file -->
+	<script type="text/javascript">
+		var xmlDoc;
+			
+		 
+		function loadXML(){
+			var url = document.getElementById("JSONFile").value;
+			if(window.XMLHttpRequest){
+				xmlhttp = new XMLHttpRequest();
+			}else{
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			try{
+				xmlhttp.open("GET", url, false);
+				xmlhttp.send();
+				xmlDoc = xmlhttp.responseText;
+			}catch(err){
+				alert("The JSON file does not exist, please re-enter the file name");
+				return;
+			}
+			try{
+				showTable();
+			}catch(err){
+				alert("JSON file is empty or has format issue");
+			}
+		}
+
+		/**
+			create a new tab to display the data table
+		**/
+		function showTable(){
+
+			var title = [], Airline = [], IATA = [], Hubs = [], Notes = [], HomePage = [], Plane = [];
+
+			var myJSON = JSON.parse(xmlDoc);
+			//table title
+			title = myJSON.Mainline.Table.Header.Data;
+			//Airline
+			var company = myJSON.Mainline.Table.Row;
+			for(var index = 0; index < company.length; index++){
+				//descrpition tells us it always contains keys
+				Airline[index] = company[index].Airline;
+				IATA[index] = company[index].IATA;
+				Notes[index] = company[index].Notes;
+				HomePage[index] = company[index].HomePage;
+				Plane[index] = company[index].Plane;
+				var hubs = [];
+				hubs = company[index].Hubs;
+				Hubs[index] = hubs;
+			}
+			
+			airlineWindow = window.open("", "tables","width=1200, height = 1200");
+			airlineWindow.document.write("<html><style>th, td {border-style: inset;} th, td {max-width: 500px; max-height: 100px;}</style><body>");
+			//assign attributes to table
+			airlineWindow.document.write("<table style: 'width: 100%'; 'min-height: 100%'");
+			//write title
+			var i = 0;
+			airlineWindow.document.write("<tr>");
+			for(i = 0; i < title.length; i++){
+				airlineWindow.document.write("<th>" + title[i] + "</th>")
+			}
+			airlineWindow.document.write("</tr>");
+
+			//use loop to write each row
+			for(i = 0; i < Airline.length; i++){
+				airlineWindow.document.write("<tr>");
+				airlineWindow.document.write("<td>" + Airline[i] + "</td>");
+				airlineWindow.document.write("<td>" + IATA[i] + "</td>");
+				//Hubs should be a unordered list
+				airlineWindow.document.write("<td><ul>");
+				for(var j = 0; j < Hubs[i].Hub.length; j++){
+					if(j == 0) //first hub is bold
+						airlineWindow.document.write("<li><b>" + Hubs[i].Hub[j] + "</b></li>");
+					else
+						airlineWindow.document.write("<li>" + Hubs[i].Hub[j] + "</li>");
+				}
+				airlineWindow.document.write("</ul></td>");
+				airlineWindow.document.write("<td>" + Notes[i] + "</td>");
+				airlineWindow.document.write("<td><a href = '" + HomePage[i] + "'>" + HomePage[i] + "</a></td>");//hyper links
+				airlineWindow.document.write("<td><img src = '" + Plane[i] + 
+					"' width = 400, height = 200> </td>");
+			}
+			airlineWindow.document.write("</table></body></html>");
+
+		}
+
+	</script>
+</body>
+</html>
