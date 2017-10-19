@@ -1,0 +1,145 @@
+html{
+	width:100%;
+    overflow-x:hidden;
+}
+body{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+#button1 {
+	background-color: rgb(218,0,30);
+    border-radius: 6px;
+    color: white;
+    padding: 10px 35px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    float: right;
+    margin-right: 80px; 
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: Helvetica,sans-serif;
+    box-shadow: inset 0 0 3px white;
+    border-color: rgb(218,0,30);
+}
+#button2{
+	background-color: rgb(218,0,30);
+    border-radius: 6px;
+    color: white;
+    padding: 8px 35px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 24px; 
+    margin-left: 110px;
+    margin-top: 30px;
+    font-family: Helvetica,sans-serif;
+    box-shadow: inset 0 0 3px white;
+    border-color: rgb(218,0,30);
+    border-width: 2px;
+}
+#button1:hover{
+	background-color: rgb(190,0,30);
+	color: white;
+}
+
+#button2:hover{
+	background-color: rgb(190,0,30);
+	color: white;
+}
+.line {
+	background-color: rgb(0,63,116); height: 5px
+}
+
+#headtitle {
+	display: block;
+	width: 100%;
+	background: white; 
+	height: 80px;
+}
+
+#firsthalf {
+	width: 100%;
+	text-align: center;
+	background-color: rgb(0,63,116); 
+	color: white; 
+	height: 550px;
+}
+
+#navfont {
+	position: absolute;
+	right: 265px;
+	font-size: 18px;
+	font-weight: 600;
+	font-family: Helvetica, sans-serif;
+	color: rgb(0,130,220); 
+	text-align: right;
+	line-height: 25px;
+	top: 3px;
+}
+
+
+#secondhalf	{
+	width: 100%;
+	text-align: center;
+	height: 594px;
+}
+
+#checktable {
+	width: 55%;
+	position: relative;
+	height: 60%;
+	font-family: Helvetica,sans-serif;
+}
+#checktable td, th {
+	color: rgb(51,51,51);
+	text-align: top;
+    text-align: left;
+    line-height: 23px;
+}
+#checktable tr{
+	position: relative;
+	vertical-align: top;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+a:hover{
+	text-decoration: underline;
+}
+
+
+#footer{
+	width: 100%;
+	background-color: rgb(0,63,116);
+	color: white;
+	font-family: Helvetica,sans-serif;
+	font-weight: 200;
+	height: 150px;
+}
+#footerul{
+	position: relative;
+	width: 100%;
+	list-style: none;
+	line-height: 16px;
+	left: 30px;
+	bottom: 20px;
+}
+#footerul li{
+	font-size: 16px;
+}
+span.circle{
+	width:6px;
+	height:6px;
+	display: inline-block;
+	background-color: rgb(0,109,185);
+	border-radius: 50%;
+	margin: 15px;
+	cursor: pointer;
+	position: relative;
+	top: 13px;
+}
